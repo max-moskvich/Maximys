@@ -1,0 +1,27 @@
+﻿<Window x:Class="World_yachts.Menedgeri"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:World_yachts"
+        mc:Ignorable="d"
+        Title="Менеджеры" Height="450" Width="383.197" Loaded="Window_Loaded" ResizeMode="NoResize" Background="#FF005DFF">
+    <Window.Resources>
+        <local:World_yachts_KisinDataSet1 x:Key="world_yachts_KisinDataSet1"/>
+        <CollectionViewSource x:Key="менеджерыViewSource" Source="{Binding Менеджеры, Source={StaticResource world_yachts_KisinDataSet1}}"/>
+    </Window.Resources>
+    <Grid DataContext="{StaticResource менеджерыViewSource}">
+        <DataGrid x:Name="менеджерыDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" RowDetailsVisibilityMode="VisibleWhenSelected" IsReadOnly="True" Margin="0,27.242,0,0">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="номер_менеджераColumn" Binding="{Binding Номер_менеджера}" Header="Номер менеджера" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="фамилияColumn" Binding="{Binding Фамилия}" Header="Фамилия" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="имяColumn" Binding="{Binding Имя}" Header="Имя" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="отчествоColumn" Binding="{Binding Отчество}" Header="Отчество" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="телефонColumn" Binding="{Binding Телефон}" Header="Телефон" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="адресColumn" Binding="{Binding Адрес}" Header="Адрес" Width="SizeToHeader"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Content="Add" HorizontalAlignment="Left" Margin="10,2,0,0" VerticalAlignment="Top" Width="75" Background="Yellow"/>
+        <Button Content="Delete" HorizontalAlignment="Left" Margin="109,2,0,0" VerticalAlignment="Top" Width="75" Background="#FFF01313" Click="Button_Click"/>
+    </Grid>
+</Window>

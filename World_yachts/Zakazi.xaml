@@ -1,0 +1,59 @@
+﻿<Window x:Name="Zakazi1" x:Class="World_yachts.Zakazi"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:World_yachts"
+        mc:Ignorable="d"
+        Title="Заказы" Height="450" Width="1498.36" Loaded="Zakazi1_Loaded" ResizeMode="NoResize" Background="#FF005DFF">
+    <Window.Resources>
+        <local:World_yachts_KisinDataSet1 x:Key="world_yachts_KisinDataSet1"/>
+        <CollectionViewSource x:Key="заказыViewSource" Source="{Binding Заказы, Source={StaticResource world_yachts_KisinDataSet1}}"/>
+    </Window.Resources>
+    <Grid DataContext="{StaticResource заказыViewSource}" Margin="-225,0,0,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0*"/>
+            <RowDefinition/>
+            <RowDefinition Height="0*"/>
+            <RowDefinition Height="0*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="356*"/>
+            <ColumnDefinition Width="1123*"/>
+            <ColumnDefinition Width="0*"/>
+        </Grid.ColumnDefinitions>
+        <DataGrid x:Name="заказыDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="225,32,0,0" Grid.RowSpan="2" RowDetailsVisibilityMode="VisibleWhenSelected" Grid.ColumnSpan="2" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="номер_заказаColumn" Binding="{Binding Номер_заказа}" Header="Номер заказа" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="этап_производстваColumn" Binding="{Binding Этап_производства}" Header="Этап производства" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="статус_оплатыColumn" Binding="{Binding Статус_оплаты}" Header="Статус оплаты" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="наименование_товараColumn" Binding="{Binding Наименование_товара}" Header="Наименование товара" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="наименование_клиентаColumn" Binding="{Binding Наименование_клиента}" Header="Наименование клиента" Width="SizeToHeader"/>
+                <DataGridTemplateColumn x:Name="дата_заведенияColumn" Header="Дата заведения" Width="SizeToHeader">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <DatePicker SelectedDate="{Binding Дата_заведения, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn x:Name="номер_менеджераColumn" Binding="{Binding Номер_менеджера}" Header="Номер менеджера" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="адрес_доставкиColumn" Binding="{Binding Адрес_доставки}" Header="Адрес доставки" Width="SizeToHeader"/>
+                <DataGridCheckBoxColumn x:Name="потверждение_доставкиColumn" Binding="{Binding Потверждение_доставки}" Header="Потверждение доставки" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="номер_аксессуараColumn" Binding="{Binding Номер_аксессуара}" Header="Номер аксессуара" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="сумма_заказаColumn" Binding="{Binding Сумма_заказа}" Header="Сумма заказа" Width="SizeToHeader"/>
+                <DataGridTemplateColumn x:Name="дата_доставкиColumn" Header="Дата доставки" Width="SizeToHeader">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <DatePicker SelectedDate="{Binding Дата_доставки, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn x:Name="время_доставкиColumn" Binding="{Binding Время_доставки}" Header="Время доставки" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="имя_получателяColumn" Binding="{Binding Имя_получателя}" Header="Имя получателя" Width="SizeToHeader"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Content="Add" HorizontalAlignment="Left" Margin="251,7,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="75" Grid.ColumnSpan="2" Background="Yellow"/>
+        <Button Content="Delete" HorizontalAlignment="Left" Margin="352,7,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="75" Background="#FFF01313" Grid.ColumnSpan="2" Click="Button_Click"/>
+
+    </Grid>
+</Window>

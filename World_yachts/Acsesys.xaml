@@ -1,0 +1,32 @@
+﻿<Window x:Name="Acsesys1" x:Class="World_yachts.Acsesys"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:World_yachts"
+        mc:Ignorable="d"
+        Title="Аксессуары" Height="450" Width="421.311" Background="#FF005DFF" Loaded="Window_Loaded" ResizeMode="NoResize">
+    <Window.Resources>
+        <local:World_yachts_KisinDataSet1 x:Key="world_yachts_KisinDataSet1"/>
+        <CollectionViewSource x:Key="аксессуарыViewSource" Source="{Binding Аксессуары, Source={StaticResource world_yachts_KisinDataSet1}}"/>
+    </Window.Resources>
+    <Grid DataContext="{StaticResource аксессуарыViewSource}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="317*"/>
+            <ColumnDefinition Width="97*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+        <DataGrid x:Name="аксессуарыDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" RowDetailsVisibilityMode="VisibleWhenSelected" Grid.ColumnSpan="3" IsReadOnly="True" Margin="0,31,0,0">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="номер_аксессуараColumn" Binding="{Binding Номер_аксессуара}" Header="Номер аксессуара" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="наименованиеColumn" Binding="{Binding Наименование}" Header="Наименование" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="описаниеColumn" Binding="{Binding Описание}" Header="Описание" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="ценаColumn" Binding="{Binding Цена}" Header="Цена" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="моедели_лодокColumn" Binding="{Binding Моедели_лодок}" Header="Моедели лодок" Width="SizeToHeader"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Content="Add" HorizontalAlignment="Left" Margin="10,6,0,0" VerticalAlignment="Top" Width="75" Background="Yellow" Click="Button_Click_1"/>
+        <Button Content="Delete" HorizontalAlignment="Left" Margin="105,6,0,0" VerticalAlignment="Top" Width="75" Background="#FFF01313" Click="Button_Click_2"/>
+
+    </Grid>
+</Window>
