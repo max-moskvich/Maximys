@@ -24,7 +24,7 @@ namespace World_yachts
         private SqlConnection Conn = new SqlConnection(ConnectionString);
         public Menedgeri()
         {
-            InitializeComponent();
+            InitializeComponent();//комментарий
             Conn.Open();
         }
 
@@ -43,7 +43,7 @@ namespace World_yachts
         {
             string del = менеджерыDataGrid.SelectedItems[0].ToString();
             
-            MessageBox.Show(del);
+            MessageBox.Show(del);//комментарий
        
             //string cmdStr = "DELETE FROM dbo.Менеджеры WHERE Номер_менеджера = " + del + ";";
             //SqlCommand cmdinst = new SqlCommand(cmdStr, Conn);
